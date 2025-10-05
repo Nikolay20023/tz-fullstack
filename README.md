@@ -1,17 +1,23 @@
-# tz_fullstack
+# Flutter Time Tracker
 
-A new Flutter project.
+## Описание
+Упрощённое app для учёта смен: авторизация (Supabase Auth), старт/финиш смены, история. Чистая архитектура (data/domain/presentation), Bloc для state.
 
-## Getting Started
+## Архитектура
+- **Data**: SupabaseRemoteDataSource для API.
+- **Domain**: Entities, UseCases, Repository абстракции.
+- **Presentation**: Bloc (AuthBloc, ShiftBloc), Pages с Form/BlocBuilder.
+- State: Bloc + Either<Failure, T> для ошибок.
 
-This project is a starting point for a Flutter application.
+## API
+Supabase (PostgreSQL + Auth):
+- Auth: POST /auth/v1/signup, /signin (email/password).
+- Shifts: POST /rest/v1/shifts, PATCH /rest/v1/shifts, GET /rest/v1/shifts?user_id=eq.{id}.
+- URL: https://твой-проект.supabase.co
+- RLS: Только свои данные.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# tz-fullstack
+## Запуск
+1. Клонируй repo: `git clone ...`
+2. `flutter pub get`
+3. В main.dart: Замени Supabase URL/anonKey на свои (создай проект на supabase.com).
+4. `flutter run` (Android/iOS эмулятор).
