@@ -16,6 +16,8 @@ class UserRepositoryImpl implements UserRepository {
         email: userModel.email,
         name: userModel.name,
         avatarUrl: userModel.avatarUrl,
+        createdAt: userModel.createdAt,
+        updatedAt: userModel.updatedAt,
       );
     }
     return null;

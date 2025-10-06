@@ -15,9 +15,3 @@ Supabase (PostgreSQL + Auth):
 - Shifts: POST /rest/v1/shifts, PATCH /rest/v1/shifts, GET /rest/v1/shifts?user_id=eq.{id}.
 - URL: https://твой-проект.supabase.co
 - RLS: Только свои данные.
-
-## Запуск
-1. Клонируй repo: `git clone ...`
-2. `flutter pub get`
-3. В main.dart: Замени Supabase URL/anonKey на свои (создай проект на supabase.com).
-4. `flutter run` (Android/iOS эмулятор).

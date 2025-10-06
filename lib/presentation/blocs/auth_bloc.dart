@@ -26,27 +26,27 @@ class SignOutEvent extends AuthEvent {}
 
 class GetCurrentUserEvent extends AuthEvent {}
 
-abstract class AuthState {}
+abstract class AuthBlocState {}
 
-class AuthInitial extends AuthState {}
+class AuthInitial extends AuthBlocState {}
 
-class AuthLoading extends AuthState {}
+class AuthLoading extends AuthBlocState {}
 
-class AuthAuthenticated extends AuthState {
+class AuthAuthenticated extends AuthBlocState {
   final UserEntity user;
 
   AuthAuthenticated(this.user);
 }
 
-class AuthUnauthenticated extends AuthState {}
+class AuthUnauthenticated extends AuthBlocState {}
 
-class AuthError extends AuthState {
+class AuthError extends AuthBlocState {
   final String message;
 
   AuthError(this.message);
 }
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
   final SignInUseCase _signInUseCase;
   final SignUpUseCase _signUpUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
@@ -68,7 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<GetCurrentUserEvent>(_onGetCurrentUser);
   }
 
-  Future<void> _onSignIn(SignInEvent event, Emitter<AuthState> emit) async {
+  Future<void> _onSignIn(SignInEvent event, Emitter<AuthBlocState> emit) async {
     emit(AuthLoading());
     try {
       await _signInUseCase.call(event.email, event.password);
@@ -83,7 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onSignUp(SignUpEvent event, Emitter<AuthState> emit) async {
+  Future<void> _onSignUp(SignUpEvent event, Emitter<AuthBlocState> emit) async {
     emit(AuthLoading());
     try {
       await _signUpUseCase.call(event.email, event.password, event.name);
@@ -98,7 +98,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onSignOut(SignOutEvent event, Emitter<AuthState> emit) async {
+  Future<void> _onSignOut(SignOutEvent event, Emitter<AuthBlocState> emit) async {
     emit(AuthLoading());
     try {
       await _signOutUseCase.call();
@@ -108,7 +108,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _onGetCurrentUser(GetCurrentUserEvent event, Emitter<AuthState> emit) async {
+  Future<void> _onGetCurrentUser(GetCurrentUserEvent event, Emitter<AuthBlocState> emit) async {
     emit(AuthLoading());
     try {
       final user = await _getCurrentUserUseCase.call();

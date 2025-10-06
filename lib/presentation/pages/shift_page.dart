@@ -28,7 +28,7 @@ class ShiftPage extends StatelessWidget {
             if (state is ShiftLoading) {
               return const LoadingWidget();
             } else if (state is ShiftError) {
-              return ErrorWidget(message: state.message);
+              return CustomErrorWidget(message: state.message);
             } else if (state is ShiftActive) {
               return _buildActiveShiftView(context, state);
             } else {

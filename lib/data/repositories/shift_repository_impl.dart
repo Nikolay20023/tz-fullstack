@@ -12,10 +12,16 @@ class ShiftRepositoryImpl implements ShiftRepository {
     final shiftModels = await _remoteDataSource.getUserShifts(userId);
     return shiftModels.map((model) => ShiftEntity(
       id: model.id,
-      userId: model.userId,
+      profileId: model.profileId,
       startTime: model.startTime,
       endTime: model.endTime,
       status: model.status,
+      description: model.description,
+      hourlyRate: model.hourlyRate,
+      totalHours: model.totalHours,
+      totalPay: model.totalPay,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
     )).toList();
   }
 
@@ -24,10 +30,16 @@ class ShiftRepositoryImpl implements ShiftRepository {
     final shiftModel = await _remoteDataSource.startShift(userId);
     return ShiftEntity(
       id: shiftModel.id,
-      userId: shiftModel.userId,
+      profileId: shiftModel.profileId,
       startTime: shiftModel.startTime,
       endTime: shiftModel.endTime,
       status: shiftModel.status,
+      description: shiftModel.description,
+      hourlyRate: shiftModel.hourlyRate,
+      totalHours: shiftModel.totalHours,
+      totalPay: shiftModel.totalPay,
+      createdAt: shiftModel.createdAt,
+      updatedAt: shiftModel.updatedAt,
     );
   }
 
@@ -36,10 +48,16 @@ class ShiftRepositoryImpl implements ShiftRepository {
     final shiftModel = await _remoteDataSource.endShift(shiftId);
     return ShiftEntity(
       id: shiftModel.id,
-      userId: shiftModel.userId,
+      profileId: shiftModel.profileId,
       startTime: shiftModel.startTime,
       endTime: shiftModel.endTime,
       status: shiftModel.status,
+      description: shiftModel.description,
+      hourlyRate: shiftModel.hourlyRate,
+      totalHours: shiftModel.totalHours,
+      totalPay: shiftModel.totalPay,
+      createdAt: shiftModel.createdAt,
+      updatedAt: shiftModel.updatedAt,
     );
   }
 }

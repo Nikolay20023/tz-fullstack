@@ -64,7 +64,7 @@ class ShiftBloc extends Bloc<ShiftEvent, ShiftState> {
   Future<void> _onEndShift(EndShiftEvent event, Emitter<ShiftState> emit) async {
     emit(ShiftLoading());
     try {
-      final shift = await _endShiftUseCase.call(event.shiftId);
+      await _endShiftUseCase.call(event.shiftId);
       emit(ShiftInactive());
     } catch (e) {
       emit(ShiftError(e.toString()));

@@ -27,7 +27,7 @@ import 'presentation/pages/shift_page.dart';
 import 'presentation/pages/history_page.dart';
 
 const supabaseUrl = 'https://dtohbtgidavssedfuwlg.supabase.co';
-const supabaseKey = String.fromEnvironment('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2hidGdpZGF2c3NlZGZ1d2xnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2MjkyMzUsImV4cCI6MjA3NTIwNTIzNX0.zYEmTp9cTYqHtDKZ4pY1F_RqPhdOCnnITs9vGe-flA0');
+const supabaseKey = String.fromEnvironment('SUPABASE_KEY', defaultValue: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0b2hidGdpZGF2c3NlZGZ1d2xnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2MjkyMzUsImV4cCI6MjA3NTIwNTIzNX0.zYEmTp9cTYqHtDKZ4pY1F_RqPhdOCnnITs9vGe-flA0');
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: BlocBuilder<AuthBloc, AuthState>(
+        home: BlocBuilder<AuthBloc, AuthBlocState>(
           builder: (context, state) {
             if (state is AuthLoading) {
               return const Scaffold(

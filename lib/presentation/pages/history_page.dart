@@ -39,7 +39,7 @@ class _HistoryPageState extends State<HistoryPage> {
             if (state is HistoryLoading) {
               return const LoadingWidget();
             } else if (state is HistoryError) {
-              return ErrorWidget(message: state.message);
+              return CustomErrorWidget(message: state.message);
             } else if (state is HistoryLoaded) {
               return _buildShiftsList(state.shifts);
             } else {
